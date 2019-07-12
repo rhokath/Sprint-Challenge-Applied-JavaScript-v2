@@ -33,31 +33,31 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
     console.log(bootstrap)
     bootstrap.forEach(item => {
         console.log(item)
-        const element = createArticle(item.heading, item.photo, item.author)
+        const element = createArticle(item.headline, item.authorPhoto, item.authorName)
         cardsContainer.appendChild(element)
 
     })
     javascript.forEach(item => {
         console.log('js', item)
-        const element = createArticle(item.heading, item.photo, item.author)
+        const element = createArticle(item.headline, item.authorPhoto, item.authorName)
         cardsContainer.appendChild(element)
 
     })
     jquery.forEach(item => {
         console.log('jq', item)
-        const element = createArticle(item.heading, item.photo, item.author)
+        const element = createArticle(item.headline, item.authorPhoto, item.authorName)
         cardsContainer.appendChild(element)
 
     })
     node.forEach(item => {
         console.log('node', item)
-        const element = createArticle(item.heading, item.photo, item.author)
+        const element = createArticle(item.headline, item.authorPhoto, item.authorName)
         cardsContainer.appendChild(element)
 
     })
     technology.forEach(item => {
         console.log('tech', item)
-        const element = createArticle(item.heading, item.photo, item.author)
+        const element = createArticle(item.headline, item.authorPhoto, item.authorName)
         cardsContainer.appendChild(element)
 
     })
@@ -95,10 +95,27 @@ function createArticle(heading, photo, author){
     // set styles
     card.classList.add('card')
     headline.classList.add('headline')
+    authorDiv.classList.add('author')
     imgContainer.classList.add('img-container')
     // set content 
     headline.textContent = heading
-    img.src = photo
+    img.src = `${photo}`
     authorName.textContent = `By ${author}`
+    //set up structure
+    card.appendChild(headline)
+    card.appendChild(authorDiv)
+    authorDiv.appendChild(imgContainer)
+    imgContainer.appendChild(img)
+    authorDiv.appendChild(authorName)
     return card;
 }
+// <div class="card">
+//   <div class="headline">{Headline of article}</div>
+//   <div class="author">
+//     <div class="img-container">
+//       <img src={url of authors image} />
+//     </div>
+//     <span>By {authors name}</span>
+//   </div>
+// </div>
+//
