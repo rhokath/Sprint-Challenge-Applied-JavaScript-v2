@@ -33,31 +33,31 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
     console.log(bootstrap)
     bootstrap.forEach(item => {
         console.log(item)
-        const element = createArticle(item)
+        const element = createArticle(item.heading, item.photo, item.author)
         cardsContainer.appendChild(element)
 
     })
     javascript.forEach(item => {
         console.log('js', item)
-        const element = createArticle(item)
+        const element = createArticle(item.heading, item.photo, item.author)
         cardsContainer.appendChild(element)
 
     })
     jquery.forEach(item => {
         console.log('jq', item)
-        const element = createArticle(item)
+        const element = createArticle(item.heading, item.photo, item.author)
         cardsContainer.appendChild(element)
 
     })
     node.forEach(item => {
         console.log('node', item)
-        const element = createArticle(item)
+        const element = createArticle(item.heading, item.photo, item.author)
         cardsContainer.appendChild(element)
 
     })
     technology.forEach(item => {
         console.log('tech', item)
-        const element = createArticle(item)
+        const element = createArticle(item.heading, item.photo, item.author)
         cardsContainer.appendChild(element)
 
     })
@@ -84,7 +84,7 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
     console.log("there was an error getting this api", error)
 })
 
-function createArticle(obj){
+function createArticle(heading, photo, author){
     // create elements
     const card = document.createElement('div')
     const headline = document.createElement('div')
@@ -97,8 +97,8 @@ function createArticle(obj){
     headline.classList.add('headline')
     imgContainer.classList.add('img-container')
     // set content 
-    headline.textContent = obj.headline
-    img.src = obj.authorPhoto
-    authorName.textContent = `By ${obj.authorName}`
+    headline.textContent = heading
+    img.src = photo
+    authorName.textContent = `By ${author}`
     return card;
 }
