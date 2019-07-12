@@ -17,3 +17,88 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+const cardsContainer = document.querySelector('.cards-container')
+// cardsContainer.appendChild(createArticle(data.articles))
+
+axios.get("https://lambda-times-backend.herokuapp.com/articles")
+.then(data => {
+    console.log('response', data)
+    // console.log(data.data.articles)
+    let bootstrap = data.data.articles.bootstrap
+    let javascript = data.data.articles.javascript
+    let jquery = data.data.articles.jquery
+    let node = data.data.articles.node
+    let technology = data.data.articles.technology
+    const cardsContainer = document.querySelector('.cards-container')
+    console.log(bootstrap)
+    bootstrap.forEach(item => {
+        console.log(item)
+        const element = createArticle(item)
+        cardsContainer.appendChild(element)
+
+    })
+    javascript.forEach(item => {
+        console.log('js', item)
+        const element = createArticle(item)
+        cardsContainer.appendChild(element)
+
+    })
+    jquery.forEach(item => {
+        console.log('jq', item)
+        const element = createArticle(item)
+        cardsContainer.appendChild(element)
+
+    })
+    node.forEach(item => {
+        console.log('node', item)
+        const element = createArticle(item)
+        cardsContainer.appendChild(element)
+
+    })
+    technology.forEach(item => {
+        console.log('tech', item)
+        const element = createArticle(item)
+        cardsContainer.appendChild(element)
+
+    })
+
+    // // console.log(Object.keys(data.data.articles))
+    // // console.log(Object.entries(data.data.articles))
+    // let objArr = Object.entries(data.data.articles)
+    // console.log('entries', objArr)
+    // // console.log(Object.values(data.data.articles))
+    // let valuesArr = Object.values(data.data.articles)
+    // console.log('values', valuesArr)
+    // let topicsArr = Object.keys(data.data.articles)
+    // console.log('keys', topicsArr)
+   
+    // objArr.forEach(item => {
+    //     console.log('entry array item', item)
+    // })
+    // valuesArr.forEach(item => {
+    //     console.log('value array item', item)
+    // })
+
+})
+.catch(error => {
+    console.log("there was an error getting this api", error)
+})
+
+function createArticle(obj){
+    // create elements
+    const card = document.createElement('div')
+    const headline = document.createElement('div')
+    const authorDiv = document.createElement('div')
+    const imgContainer = document.createElement('div')
+    const img = document.createElement('img')
+    const authorName = document.createElement('span')
+    // set styles
+    card.classList.add('card')
+    headline.classList.add('headline')
+    imgContainer.classList.add('img-container')
+    // set content 
+    headline.textContent = obj.headline
+    img.src = obj.authorPhoto
+    authorName.textContent = `By ${obj.authorName}`
+    return card;
+}

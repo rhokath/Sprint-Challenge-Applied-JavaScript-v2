@@ -9,7 +9,7 @@
 //  </div >
 // And add it to the DOM in the .headerContainer component
 let headerContainer = document.querySelector('.header-container')
-console.log(headerContainer)
+// console.log(headerContainer)
 headerContainer.appendChild(Header())
 
 function Header() {
